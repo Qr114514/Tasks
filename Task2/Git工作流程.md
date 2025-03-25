@@ -1,6 +1,6 @@
 # Git工作流程
 ***
-![alt Git工作流程](D:\VSCode\test\runoob\MyTasks\Git工作流程.jpg)
+![alt Git工作流程](https://github.com/Qr114514/Tasks/blob/main/pictures/Git%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B.jpg?raw=true)
 ## 目录
 [1.克隆仓库](#1-克隆仓库)  
 [2.创建新分支](#2-创建新分支)  
