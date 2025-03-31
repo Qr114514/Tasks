@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>一个动态按钮</title>
+    <style>
+    #myBtn {    
+        padding: 10px 20px;
+        background: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    </style>
+    </head>
+    <body>
+        <button id="myBtn">点我变色</button>
+    </body>
+    <script>
+        document.getElementById('myBtn').addEventListener('click', function() {
+  this.style.backgroundColor = '#ff0000'; // 点击后变红
+    });
+    </script>
+</html>
