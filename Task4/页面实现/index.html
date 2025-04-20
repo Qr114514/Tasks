@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>招新页面</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+
+        .nav {
+            display: flex;
+            gap: 0;  /* 移除按钮间距 */
+            justify-content: space-between;  /* 改为均匀分布 */
+            background:  rgba(255, 165, 39, 0.8);  /* 使用rgba设置透明度 */
+            border-radius: 10px;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000; /* 确保导航栏在其他内容之上 */
+            margin: 0;
+            width: calc(100% - 40px); /* 减去左右边距 */
+            box-sizing: border-box; /* 确保padding不会增加宽度 */
+            height:50px;
+        }
+
+        .nav-item {
+            flex: 1;
+            min-width: 0;  /* 允许缩小 */
+            background: transparent; /* 背景透明 */
+            color: white;
+            border-radius: 13px;
+            text-align: center; /* 文本居中 */
+            cursor: pointer; /* 鼠标样式 */
+            transition: all 0.8s ease; /* 平滑过渡 */
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px; /* 增加按钮之间的间距 */
+            font-size: 1.1em;
+            height:50px;
+            text-decoration: none; /* 添加此行移除下划线 */
+        }
+
+        .nav-item:hover { /* 悬停效果 */
+            background: #ffab0f;
+            color: #909090;
+            border-radius: 15px;
+        }
+        .nav-item.newthread { /* 悬停效果 */
+            color:#909090;
+        }
+        .nav-item.newthread:hover{ /* 悬停效果 */
+            color: #fff;
+        }
+        
+
+        .dropdown {
+            position: relative;  /* 添加相对定位 */
+            flex: 1;  /* 与其他导航项保持相同宽度 */
+        }
+
+        .dropdown-content {
+            position: absolute;
+            top: 100%;  /* 改为从父元素底部开始 */
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease-out;  /* 优化动画曲线和时间 */
+            z-index: 1001;
+            pointer-events: none;  /* 防止隐藏时拦截点击 */
+        }
+
+        .dropdown:hover .dropdown-content {  /* 悬停时显示 */
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;  /* 恢复点击事件 */
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .qrcode {
+            width: 300px;  /* 设置最大宽度 */
+            height: 300px; /* 设置最大高度 */
+            background: #fff;
+            border-radius: 10px;
+            padding: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border: 3px solid #FFA500;
+            object-fit: contain;  /* 保持图片比例 */
+        }
+
+
+
+        @keyframes slideDown {
+            from {
+                transform: scaleY(0);
+                opacity: 0;
+            }
+            to {
+                transform: scaleY(1);
+                opacity: 1;
+            }
+        }
+
+
+    </style>
+
+
+    <style>
+        .Geek {
+            position: relative;
+            background-image: url('images/background_Homepage.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 20px;
+            text-align: center;
+            width: 100vw;
+            height: 100vh;
+            min-height: 100%;
+            margin: 0;
+        }
+    
+        .Geek img {
+            transition: transform 0.3s ease;
+            max-width: 100%;
+            height: auto;
+            margin-top: 100px; /* 调整这个值来控制下移距离 */
+            object-fit: contain;
+        }
+    
+        .Geek img:hover {
+            transform: scale(1.5);
+        }
+    </style>
+
+
+    <style>
+
+
+    .center {
+
+        text-align: center;
+
+    }
+
+    .center h1 {
+        background-image: url('images/decoration_Transition.png');
+        background-repeat: no-repeat;  /* 图片水平平铺 */
+        background-position: center;
+        background-size: 100% 100%; /* 确保图片高度适配 */
+        display: block;
+        width: 100%; /* 宽度为100% */;
+        min-height: 100px;
+        padding: 20px 0;  /* 增加内边距使文字与背景分离 */
+        color: darkblue;
+        position: relative;
+        z-index: 1; /* 确保显示层级 */
+    }
+
+        
+    .card1, .card2 {
+        display: flex;
+        border: 2px solid #000; /* 黑色单边框 */
+        box-shadow:0 4px 10px rgba(0,0,0,0.2) ;
+        margin: 50px 120px;
+        padding: 15px;
+        border-radius: 12px;
+        transition: transform 0.3s ease;
+    }
+
+    .card1:hover,.card2:hover {
+            transform: scale(1.05);
+        }
+
+    .card1 {
+        flex-direction: row-reverse; /* 图片在右侧 */
+        }
+
+    .card2 {
+        flex-direction: row; /* 图片在左侧 */
+            }
+
+    .card1 img, .card2 img {
+        width: 300px;
+        height: 400px;
+        object-fit: cover;
+        margin: 0 15px;
+        transition: transform 0.3s ease;
+        }
+
+        .card1 img:hover{
+            transform: rotate(-10deg);
+        }
+
+       .card2 img:hover{
+            transform: rotate(10deg);
+        }  
+       
+
+    .container {
+        flex: 1;
+        padding: 0 10px;
+        }
+
+    .container h1 {
+        margin-top: 0;
+        color: #333;
+        font-size: 24px;
+        margin: 40px 20px;
+    }
+
+    .container h2 {
+        color: #666;
+        font-style: italic;
+        margin: 40px 20px;
+    }
+
+    .container p {
+        color: #444;
+        line-height: 1.6;
+        margin: 40px 20px;
+    }
+</style>
+        
+<style>
+
+
+
+    .About Us {
+        margin: 100px auto;
+        padding: 40px;
+        position: relative;
+    }
+
+    .about-card h1 {
+       color: gray; 
+       text-align: center;
+       margin-bottom: 30px;
+       font-size: 36px; /* 增大标题字体大小 */
+       font-weight: bold; /* 加粗标题 */
+       position: relative; /* 确保伪元素可以相对定位 */
+
+    }
+
+    .about-card {
+        background-color: #FFF9E6;
+        border: 5px solid #CCCCCC; 
+        border-radius: 15px;
+        padding: 30px;
+        margin: 50px 80px;
+        max-width: 1200px;
+        position: relative;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .about-items {
+        display: flex;
+        justify-content: space-around;
+        margin: 10px 50px 100px 50px;
+    }
+
+    .about-item1 {
+        flex: 0 1 150px; /* 固定宽度 */
+        min-height: 280px;
+        border: 6px solid #7e1598; 
+        border-radius: 25px;
+        padding: 20px;
+        margin: 0 20px;
+        text-align: center;
+        background-color: white;
+        display: flex;
+        flex-direction: column; /* 垂直布局 */
+        justify-content: flex-start; /* 内容顶部对齐 */
+        transition: transform 0.3s ease;
+        box-shadow: #CCCCCC 0 0 10px;
+    }
+
+    .about-item2 {
+        flex: 0 1 150px;
+        min-height: 350px;
+        border: 6px solid #7e1598; 
+        border-radius: 25px;
+        padding: 20px;
+        margin: 0 20px;
+        text-align: center;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        transition: transform 0.3s ease;
+        box-shadow: #CCCCCC 0 0 10px;
+    }
+    .about-item1:hover, .about-item2:hover {
+        transform: scale(1.2);
+    }
+
+    .about-item1 img, .about-item2 img  {
+        width: 80px;
+        height: 100px;
+        margin: 0 auto 10px;
+    }
+
+    .about-item1 p,.about-item2 p  {
+        color: #555;
+        line-height: 1.6;
+        margin-top: 20px;
+    }
+
+    .corner-image {
+            position: absolute;
+            width: 120px;
+            height: 40px;
+        }
+
+        .top-left {
+            top: -5px;
+            left: -20px;
+        }
+
+        .top-right {
+            top: -5px;
+            right: -20px;
+        }
+
+        .bottom-left {
+            bottom: 0;
+            left: -20px;
+        }
+
+        .bottom-right {
+            bottom: 0;
+            right: -20px;
+        }
+
+
+    .extra-decoration {
+        position: absolute;
+        right: 20px;
+        bottom: 20px;
+        width: 100px;
+        height: 100px;
+        transition: all 0.3s ease;
+    }
+
+    .extra-decoration:hover {
+        transform: translateY(10px); /* 向下移动10像素 */
+        filter: drop-shadow(0 0 5px rgba(0,0,0,0.3));
+    }
+</style>
+
+<style>
+
+    .Contact-Us {
+            margin: 100px auto;
+            padding: 40px;
+            position: relative;
+        }
+
+    .contact-card {
+        border: 7px solid #2e8b57; 
+        border-radius: 15px;
+        padding: 20px 180px 20px 220px;
+        max-width: 1200px;
+        margin: 40px 80px;
+        position: relative;
+        background-color: white;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        display: flex;
+        flex-direction: column; /* 垂直布局 */
+        align-items: center; /* 水平居中 */
+    }
+
+    /* 装饰图片样式 */
+    .decoration {
+        position: absolute;
+        width: 80px;
+        height: auto;
+    }
+    .decoration.top-left {
+        top: -30px;
+        left: 0;
+        width: 200px;
+        height: 300px;
+    }
+    .decoration.bottom-left {
+        bottom: 10px;
+        left: 10px;
+    }
+    .decoration.right {
+        right: -20px;
+        top: 0;
+        height: 100%;
+        width: auto;
+
+    }
+    .decoration.chameleon {
+        right: 100px;
+        bottom: -20px;
+        width: 400px;
+        height: 200px;
+    }
+
+    /* 卡片内容样式 */
+    .card-content {
+        padding: 20px;
+        position: relative;
+        z-index: 1;
+
+    }
+
+    .card-title {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #0f8844;
+
+    }
+    .title-icon  {
+        width: 30px;
+        margin-right: 10px;
+        vertical-align: middle;
+    }
+
+    .contact-list {
+        margin: 20px 0;
+        padding-left: 20px;
+        font-size: 1.1em;
+    }
+
+    .contact-list li {
+        margin-bottom: 1em;
+        line-height: 1.6;
+
+    }
+    .contact-text {
+        margin-bottom: 25px;
+        color: #9a9a9a;
+
+    }
+
+    /* 按钮样式 */
+    .button-group {
+        display: flex;
+        justify-content: space-between;
+        gap: 15px;
+        padding: 0 30px;
+        margin: 50px 50px;
+    }
+    .button {
+        flex:0 1 auto;
+        padding: 8px 15px;
+        min-width: 100px;
+        background-color: #0f8844; 
+        color: white;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(77, 77, 77, 0.3); 
+        transition: all 0.3s ease;
+    }
+    .button:hover {
+        background-color: #3cb371;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(46, 139, 87, 0.4);
+    }
+
+</style>
+
+
+<style>
+
+    .More-Questions {
+        background-image: url('images/background_QA.png');
+        background-size: 100% 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        border: 6px solid #42c0e9; 
+        border-radius: 15px;
+        padding: 30px;
+        margin: 50px auto;
+        max-width: 1000px;
+        max-height: 1500px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1)
+    }
+
+    .More-Questions h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 30px;
+        font-size: 2em;
+    }
+
+    .questions-list {
+        list-style-type: none;
+        padding: 0;
+        width: 90%;
+        max-width: 800px;
+        counter-reset: question-counter;
+    }
+
+    .questions-list .question { 
+        counter-increment: question-counter; /* 计数器自增 */
+        margin-bottom: 15px;
+        cursor: pointer; /* 鼠标样式 */
+        transition: all 0.3s ease;
+        text-align: left;
+        padding-left: 0;
+        position: relative;
+    }
+
+    .questions-list .question:hover{
+        transform: translateX(-20px);
+    }
+
+    .questions-list .question .title::before { /* 计数器样式 */
+        content: counter(question-counter) ". "; /* 显示计数器 */
+        font-weight: bold;
+    }
+
+    .question {
+        margin-bottom: 15px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-align: left;
+        padding-left: 20px;
+    }
+
+    .title {
+        padding: 10px;
+        border-radius: 8px;
+        font-size: 1.1em;
+        transition: all 0.3s ease;
+        text-align: left;
+        margin-left: 0;
+        padding-left: 0;
+    }
+
+    .title:hover {
+        font-size: 1.2em;
+        color: #888;
+    }
+
+    .answer {
+        display: none;
+        padding: 15px;
+        margin-top: 5px;
+        background-color: #90cde2d7; 
+        color: white;
+        border-radius: 8px;
+        animation: fadeIn 0.3s ease;
+        text-align: left;
+        transform: none !important; /* 移除过渡 */
+    }
+
+    .answer.active {
+        display: block;
+    }
+
+    @keyframes fadeIn { /* 淡入动画 */
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+
+
+<style>
+    /* footer样式 */
+    .footer {
+        background-color: #f8f9fa;
+        padding: 20px 0;
+        text-align: center;
+        font-size: 14px;
+        color: #6c757d;
+        border-top: 1px solid #e9ecef;
+        margin-top: 50px;
+    }
+
+    .footer p {
+        margin: 5px 0;
+        line-height: 1.5;
+    }
+
+</style>
+
+
+<style>
+    /* 返回顶部按钮样式 */
+    .back-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background-color: #FFA500;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        transition: all 0.3s ease;
+        z-index: 999;
+    }
+
+    .back-to-top:hover {
+        background-color: #ff8c00;
+        transform: scale(1.1);
+    }
+
+    .back-to-top i {
+        color: white;
+        font-size: 24px;
+        transition: all 0.3s ease;
+    }
+
+    .back-to-top:hover i.fa-arrow-up {
+        display: none;
+    }
+
+    .back-to-top i.fa-rocket {
+        display: none;
+    }
+
+    .back-to-top:hover i.fa-rocket {
+        display: block;
+    }
+</style>
+
+</head>
+<body>
+    <header style="position: sticky;top: 0;z-index: 1000;">
+        <nav class="nav">  <!--导航栏-->               
+            <div class="dropdown">
+                <a class="nav-item" href="#Introduction"> Introduction <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-content">
+                        <img src="images/qrcode_1699620268564.jpg" alt="qrcode" class="qrcode">
+                    </div>
+                </div>
+                <a class="nav-item" href="#About Us"> About Us <i class="fas fa-info-circle"></i></a>
+                <a class="nav-item newthread"  href="https://campus.new-thread.com"> NewThread <i class="fas fa-users"></i></a>
+                <a class="nav-item" href="#Contact Us"> Contact Us <i class="fas fa-envelope"></i></a>
+                <a class="nav-item" href="#More Questions"> Q&A <i class="fas fa-question-circle"></i></a>
+        </nav>
+    </header>
+
+    <div class="Geek">
+        <img src="images/decoration_Geek.png" alt="Geek" width="300" height="150">
+    </div>
+
+    <div id="Introduction" class="Introduction">
+
+        <div class="center">
+            <h1>Introduction<i class="fas fa-chevron-down"></i></h1>
+        </div>
+
+        <div class="card1">
+            <img src="images/Geek_Programmer.png" alt="Geek_Programmer" width="200" height="200">
+            <div class="container">
+                <h1>开发程序猿</h1>
+                <h2 style="color: rgb(0, 218, 218);">"Stay Hungry,Stay Foolish"</h2>
+                <p>前端：前端开发是创建Web或app视觉界面呈现给用户的过程通过HTML，CSS及JavaScript以及衍生出来的各种技术、框架、解决方案，实现互联网产品的用户界面交互。</p>
+                <p>后端：通常也称服务器端开发。不对用户显示,负责处理前端的请求，进行逻辑处理和数据交互。 客户端: 移动应用开发是为了小型、无线计算设备编写软件的流程和程序的集合，例如智能手机或平板电脑。</p>
+            </div>
+        </div>
+
+        <div class="card2">
+            <img src="images/Geek_PM.png" alt="Geek_PM" width="200" height="200">
+            <div class="container">
+                <h1>产品经理</h1>
+                <h2 style="color: rgba(255, 0, 221, 0.473);">"好的软件的特征是,明明没用过，但总觉得用过似的。"</h2>
+                <p>PM是针对某一项或是某一类的产品进行规划和管理的人员。 PM需要拥有缜密的产品逻辑思维，研究用户心理，负责产品的整个生命周期。 PM参与产品的UI和交互设计，为设计和开发确定产品原型，能够将产品变得有个性,操作变得舒适简单、自由。 PM需要一定的文档能力和沟通能力，能够在团队合作的过程中跟各个角色进行有效沟通。</p>
+            </div>
+        </div>
+
+        <div class="card1">
+            <img src="images/Geek_Game.png" alt="Geek_Game" width="200" height="200">
+            <div class="container">
+                <h1>游戏开发</h1>
+                <h2 style="color: rgb(0, 218, 218);">"TECH OTAKUS SAVE THE WORLD"</h2>
+                <p>对游戏开发的热爱和追求，使我们相聚于此。 涉及计算机图形学的学习，我们使用物理模拟引擎Unity开发我们所追求的世界，一个故事，一个角色，在我们的世界里改变现实，创造新的可能，我们参与，我们改变，我们创造...</p>
+            </div>
+        </div>
+
+        <div class="card2">
+            <img src="images/Geek_security.png" alt="Geek_security" width="200" height="200">
+            <div class="container">
+                <h1>安全</h1>
+                <h2 style="color: gold;">"路漫漫其修远兮，非大毅力者不能"</h2>
+                <p>我们主要学习Web安全和二进制安全。在Web安全中我们将学习和实践Web漏洞挖掘技术，也将探索和讨论Web安全实践的方法。在二进制安全中我们专注于分析和防御与计算机程序、系统相关的威胁，同时实践漏洞分析和修补。耐心和钻研缺一不可。</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="About Us" class="About Us">
+        <div class="about-card">
+        <h1>About Us <i class="fas fa-info-circle"></i></h1>
+        <img src="images/decoration_左上.png" alt="装饰图片" class="corner-image top-left">
+        <img src="images/decoration_右上.png" alt="装饰图片" class="corner-image top-right">
+        <img src="images/decoration_左下.png" alt="装饰图片" class="corner-image bottom-left">
+        <img src="images/decoration_右下.png" alt="装饰图片" class="corner-image bottom-right">
+        <img src="images/decoration_Butterfly.png" alt="Butterfly" class="extra-decoration" title="保持好奇心！">
+        <div class="about-items">
+            <div class="about-item1">
+                <img src="images/about_Speech.png" alt="Speech">
+                <p>每周我们会举行一次技术例会，用来汇报我们的学习内容，供成员之间交流学习。</p>
+            </div>
+            <div class="about-item2">
+                <img src="images/about_Diversity.png" alt="Diversity">
+                <p>多元化是我们的特色。在这里，你可以拥有多种方向选择，前后端、安全、AI、产品/设计、游戏等。</p>
+            </div>
+            <div class="about-item1">
+                <img src="images/about_Time.png" alt="Time">
+                <p>耐心、毅力是我们必备的品质，每周我们会至少花30小时在实验室中。以保证技术的精进。</p>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+    <div id="Contact Us" class="Contact-Us">
+
+        <div class="contact-card">
+
+            <img src="images/decoration_TreeWithSomething.png" class="decoration top-left">
+            <img src="images/decoration_Ladybug.png" class="decoration bottom-left">
+            <img src="images/decoration_Tree.png" class="decoration right">
+            <img src="images/decoration_Chameleon.png" class="decoration chameleon">
+
+            <div class="card-content">
+                <h1 class="card-title">
+                <img src="images/decoration_Leaves.png" alt="Leaves" class="title-icon">
+                Contact Us <i class="fas fa-envelope"></i>
+                </h1>
+                <ul class="contact-list">
+                    <li>热爱计算机，具有geek精神，喜欢DIY，动手能力较强</li>
+                    <li>有编程/算法/硬件基础为佳(有作品可附上)</li>
+                    <li>有足够的空余时间，热爱思考，对事物有自己的见解</li>
+                </ul>
+
+                <p class="contact-text">ps:非新思路统招只有通过发送邮件自我介绍后，收到邮件回执后才会被允许进群,在读学生, 都可邮件到newthread_geek@outlook.com报名加入.(信中需备注个人基本信息以及意向方向,此招新活动为长期招新)</p>
+            
+                <div class="button-group">
+                    <button class="button">QQ-Group <i class="fas fa-envelope"></i></button>
+                    <button class="button" onclick="alert('邮件已经为您复制到剪切板了喵！(=´∀｀)人(´∀｀=)')">E-mail <i class="fas fa-envelope"></i></button>
+                    <button title="?" class="button" onclick="window.location.href='https://www.bilibili.com/video/BV1GJ411x7h7?t=2.4'">Github <i class="fab fa-github"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="More Questions" class="More-Questions">
+        <h1>More Questions <i class="fas fa-question-circle"></i></h1>
+
+        <ol class="questions-list">
+            <li class="question">
+                <div class="title">什么是Geek(极客)？Geek精神又是什么？
+            </div>
+            <div class="answer">
+                <p>拥有好奇之心，改变之力，爱钻研，能折腾。</p>
+            </div>
+            </li>
+
+            <li class="question">
+            <div class="title">
+                招新是安排在什么时间？
+            </div>
+            <div class="answer">
+                <p>按照惯例，正式招新时间是在9月下旬~10月上旬，不过今年会有一些改动，笔试地 点一般在9号教学楼。 如果想要了解我们，可以加入我们的QQ群，招新具体的安排/变动会在招新群通知。</p>
+            </div>
+            </li>
+
+            <li class="question">
+            <div class="title">
+                我们有考核吗？考核流程是怎样的呀？
+            </div>
+            <div class="answer">
+                <p>嗯...我们一共有一轮笔试和两轮面试。权衡技术、经验和学习能力，第一轮是一些视野性的题目，淘汰率并不高。第二轮单独面试， 根据你的笔试提出技术相关的问题、兴趣爱好、个人看法。最后一轮群面，首先问及时间分 配上的问题，其次也会向你提出各种奇怪的问题。这一轮中许多题目其实并不难，也无标准答案，重在考察同学们在压力下的逻辑思维。全部通过成为预备成员啦。</p>
+            </div>
+            </li>
+
+        <li class="question">
+            <div class="title">
+                考核是怎样的形式？
+            </div>
+            <div class="answer">
+                <p>在考核期间每人会拥有一位'长者'带你入门，学习技术与知识，交流经验与想法。完成每周的新人任务后再进行一次考核筛选 后就可以成为Geek组正式成员啦！在考核期必须满足每周30个小时在实验室哦,所以考核期也不可以懈怠哦！</p>
+            </div>
+        </li>
+
+        <li class="question">
+            <div class="title">
+                进入Geek组之后都有什么福利呢？
+            </div>
+            <div class="answer">
+                <p>一对一的新人指引，每一个成员都有会一个mentor, 带你初入门槛，与你一同成长，组内管理较宽松,在尊重其他人的前提下可以尽情发挥自己的个性。 打破平淡，与同样疯狂的人把疯狂的idea实现，磨砺耐性、培养思维、成就梦想。Lab设备/网络资源充足，闲暇之余也有组织活动。更有许多的故事等你来听~</p>
+            </div>
+        </li>
+
+        <li class="question">
+            <div class="title">
+                进入团队会影响我的日常学习吗？
+            </div>
+            <div class="answer">
+                <p>你要知道大学是一个可以自由安排自己学习生活的地方。如果你想在上课之余充实自己、激励自己，最好的方法就是和比自己更优秀的人在一起。团队不缺优秀的人，而我们也期待同样优秀的你，让我们一起前进！小组里也有不少保研, 考研的前辈们, 大部分都能找到一个平衡点, 而且团队的经历对你日后读研, 工作都大有裨益。</p>
+            </div>
+        </li>
+
+        <li class="question">
+            <div class="title">
+                老师以及学长学姐们的期望是什么?
+            </div>
+            <div class="answer">
+                <p>我们希望你有很强的自学能力，同时关注新事物、新技术，喜欢挑战，逻辑性强，善于和各种文化的人合作.“每个人都可以做自己想做的事情，每个人的方向不一样。 如果你想做产品或有不错的 idea，那么就可以找志同道合的人一起合作。”</p>
+            </div>
+        </li>
+        </ol>
+    </div>
+
+    <div class="footer">
+        <p>Chtholly Nota Seniorious</p>
+        <p>Copyright © 妖精仓库| 备1145141919810 号</p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const questions = document.querySelectorAll('.question');
+            // 为每个问题添加点击事件
+            questions.forEach(question => {
+                const title = question.querySelector('.title');
+                const answer = question.querySelector('.answer');
+                // 点击标题时切换答案的显示与隐藏
+                title.addEventListener('click', function() {
+                    // 关闭所有其他答案
+                    questions.forEach(q => {
+                        if (q !== question) {
+                            q.querySelector('.answer').classList.remove('active');
+                        }
+                    });
+                    
+                    // 切换当前答案
+                    answer.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+</body>
+<script>
+    // 返回顶部功能
+    document.addEventListener('DOMContentLoaded', function() {
+
+        // 返回顶部按钮
+        const backToTopBtn = document.createElement('div');
+        backToTopBtn.className = 'back-to-top';
+        backToTopBtn.innerHTML = '<i class="fas fa-arrow-up"></i><i class="fas fa-rocket"></i>';
+        document.body.appendChild(backToTopBtn);
+
+        // 返回顶部功能
+        backToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // 根据滚动位置显示/隐藏按钮
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.style.display = 'flex';
+            } else {
+                backToTopBtn.style.display = 'none';
+            }
+        });
+    });
+</script>
+</html>
+
