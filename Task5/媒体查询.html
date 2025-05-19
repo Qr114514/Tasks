@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"> 
+<title>响应式网页</title> 
+<style>
+ul {
+    list-style-type: none;
+}
+
+ul li a {
+    text-decoration: none;
+    padding: 3px; 
+    display: block;
+}
+
+
+@media screen and (max-width: 1000px) and (min-width: 700px) {
+    ul li a:after {
+        content: "自机 ";
+        font-style: italic;
+        color: #666666;
+    }
+}
+
+@media screen and (min-width: 1001px) {
+    ul li a:before {
+        content: " " attr(data-email) "——";
+        font-size: 12px;
+        font-style: italic;
+        color: #666666;
+    }
+}
+</style>
+</head>
+<body>
+
+
+<ul>
+  <li style="color: crimson;"><a data-email="乐园的巫女">博丽灵梦</a></li>
+  <li><a data-email="普通的魔法使">雾雨魔理沙</a></li>
+  <li style="color: lawngreen;"><a data-email="风与湖的通神者">东风谷早苗</a></li>
+</ul>
+
+</body>
+</html>
