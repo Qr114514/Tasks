@@ -2,11 +2,17 @@
 <html lang="zh-cn">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>招新页面</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+
+        html{
+            font-size: 16px;
+        }
+
+        /*导航栏*/
 
         .nav {
             display: flex;
@@ -38,7 +44,7 @@
             align-items: center;
             justify-content: center;
             gap: 6px; /* 增加按钮之间的间距 */
-            font-size: 1.1em;
+            font-size: 1.1rem;
             height:50px;
             text-decoration: none; /* 添加此行移除下划线 */
         }
@@ -105,6 +111,141 @@
             }
         }
 
+
+        /* 新增：媒体查询*/
+
+    .mobile-menu-btn {
+        display: none;
+        background: transparent;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 10px;
+    }
+
+        /* 移动端样式 - 最大宽度768px */
+@media (max-width: 768px) {
+    /* 导航栏调整 */
+
+        html{
+            font-size: 14px;
+        }
+
+        .mobile-menu-btn {
+            display: block;
+        }
+
+        
+
+    .nav {
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 70%;
+        height: 100vh;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: 1001;
+        background: rgba(255, 165, 39, 0.95);
+        justify-content: flex-start;
+        padding-top: 50px;
+    }
+
+    .nav.active {
+            transform: translateX(0);
+        }
+    
+    .nav-item {
+        padding: 15px;
+        text-align: left;
+        width: 100%;
+    }
+
+    .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        z-index: 1000;
+    }
+    
+    /* 卡片布局调整 */
+    .card1, .card2 {
+        flex-direction: column;
+        margin: 20px 10px;
+    }
+    
+    .card1 img, .card2 img {
+        width: 100%;
+        height: auto;
+        margin: 0 0 15px 0;
+    }
+    
+    /* 关于我们区块调整 */
+    .about-items {
+        flex-direction: column;
+        margin: 10px;
+    }
+    
+    .about-item1, .about-item2 {
+        margin: 10px 0;
+        width: 100%;
+    }
+    
+    /* 联系我们区块调整 */
+    .contact-card {
+        padding: 20px;
+        margin: 20px 10px;
+    }
+    
+    .decoration {
+        display: none; /* 在小屏幕上隐藏装饰元素 */
+    }
+    
+    /* 问答区块调整 */
+    .More-Questions {
+        margin: 20px 10px;
+        padding: 15px;
+    }
+
+        .container h1 {
+        font-size: 1.3rem;
+        margin: 1.5rem 1rem;
+    }
+    
+    .container h2, .container p {
+        margin: 1.5rem 1rem;
+    }
+    
+    .about-card h1 {
+        font-size: 1.8rem;
+    }
+    
+    .contact-list {
+        font-size: 1rem;
+    }
+
+    .dropdown-content {
+        position: static;
+        transform: none;
+        width: 100%;
+        display: none;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+    
+    .qrcode {
+        width: 150px;
+        height: 150px;
+        margin: 10px auto;
+    }
+}
 
     </style>
 
@@ -209,7 +350,7 @@
     .container h1 {
         margin-top: 0;
         color: #333;
-        font-size: 24px;
+        font-size: 1.5rem;
         margin: 40px 20px;
     }
 
@@ -240,7 +381,7 @@
        color: gray; 
        text-align: center;
        margin-bottom: 30px;
-       font-size: 36px; /* 增大标题字体大小 */
+       font-size: 2.25rem;
        font-weight: bold; /* 加粗标题 */
        position: relative; /* 确保伪元素可以相对定位 */
 
@@ -493,7 +634,7 @@
         text-align: center;
         color: #333;
         margin-bottom: 30px;
-        font-size: 2em;
+        font-size: 1.8rem;
     }
 
     .questions-list {
@@ -534,7 +675,7 @@
     .title {
         padding: 10px;
         border-radius: 8px;
-        font-size: 1.1em;
+        font-size: 1.1rem;
         transition: all 0.3s ease;
         text-align: left;
         margin-left: 0;
@@ -542,7 +683,7 @@
     }
 
     .title:hover {
-        font-size: 1.2em;
+        font-size: 1.2rem;
         color: #888;
     }
 
@@ -570,12 +711,12 @@
 
 
 <style>
-    /* footer样式 */
+    /* footer页脚样式 */
     .footer {
         background-color: #f8f9fa;
         padding: 20px 0;
         text-align: center;
-        font-size: 14px;
+        font-size: 0.85rem;
         color: #6c757d;
         border-top: 1px solid #e9ecef;
         margin-top: 50px;
@@ -635,7 +776,11 @@
 </head>
 <body>
     <header style="position: sticky;top: 0;z-index: 1000;">
-        <nav class="nav">  <!--导航栏-->               
+        <button class="mobile-menu-btn" id="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="overlay" id="overlay"></div>
+        <nav class="nav" id="mainNav">  <!--导航栏-->               
             <div class="dropdown">
                 <a class="nav-item" href="#Introduction"> Introduction <i class="fas fa-chevron-down"></i></a>
                     <div class="dropdown-content">
@@ -828,6 +973,7 @@
     </div>
 
     <script>
+        // 问题点击事件
         document.addEventListener('DOMContentLoaded', function() {
             const questions = document.querySelectorAll('.question');
             // 为每个问题添加点击事件
@@ -848,7 +994,42 @@
                 });
             });
         });
+
+    
+    // 移动端菜单交互
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuBtn = document.getElementById('menuBtn');
+        const overlay = document.getElementById('overlay');
+        const mainNav = document.getElementById('mainNav');
+        
+        if (menuBtn && overlay && mainNav) {
+            menuBtn.addEventListener('click', function() {
+                mainNav.classList.toggle('active');
+                overlay.style.display = mainNav.classList.contains('active') ? 'block' : 'none';
+            });
+            
+            overlay.addEventListener('click', function() {
+                mainNav.classList.remove('active');
+                overlay.style.display = 'none';
+            });
+        }
+        //导航栏
+        // 修改下拉菜单交互 - 移动端点击触发
+        const dropdowns = document.querySelectorAll('.dropdown');
+        dropdowns.forEach(dropdown => {
+            const link = dropdown.querySelector('.nav-item');
+            const content = dropdown.querySelector('.dropdown-content');
+            
+            if (window.innerWidth <= 768) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    content.style.display = content.style.display === 'block' ? 'none' : 'block';
+                });
+            }
+        });
+    });
     </script>
+
 </body>
 <script>
     // 返回顶部功能
